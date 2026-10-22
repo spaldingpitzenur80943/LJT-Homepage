@@ -9,4 +9,4 @@ Personal homepage of Junteng Liu, built with the [Academic Pages](https://github
 
 ## Deployment
 
-The GitHub Actions workflow in `.github/workflows/jekyll.yml` builds the site with Jekyll and publishes the generated site to the `gh-pages` branch. GitHub Pages can serve the site from that branch with the configured `/LJT-Homepage` base URL.
+GitHub Pages builds the `master` branch and publishes the site at the configured `/LJT-Homepage` base URL. The GitHub Actions workflow in `.github/workflows/jekyll.yml` validates the Jekyll build.
