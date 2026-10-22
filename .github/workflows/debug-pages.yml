@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
-  pages: write
+  pages: read
 jobs:
   diagnose:
     runs-on: ubuntu-latest
@@ -17,10 +17,9 @@ jobs:
             echo "Repository: ${{ github.repository }}"
             echo "GET Pages"
             gh api "repos/${{ github.repository }}/pages"
-            echo "POST Pages workflow"
-            gh api --method POST "repos/${{ github.repository }}/pages" -f build_type=workflow
           } > pages-diagnostic.txt 2>&1 || true
-          gh api --method PUT "repos/${{ github.repository }}/contents/pages-diagnostic.txt" \
-            -f message="Record Pages setup diagnostic" \
-            -f content="$(base64 -w0 pages-diagnostic.txt)" \
-            -f branch=master
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pages-diagnostic.txt
+          git commit -m "Record Pages status" || true
+          git push
