@@ -16,7 +16,6 @@ repository               : "spaldingpitzenur80943/LJT-Homepage"
 # Site Author
 author:
   # Biographic information
-  avatar           : ""
   name             : "Junteng Liu"
   bio              : "First-year PhD candidate at HKUST NLP Group"
   employer         : "HKUST NLP Group"
@@ -207,7 +206,7 @@ defaults:
     values:
       layout: single
       author_profile: true
-      share: true
+      share: false
       comments: true
   - scope:
       path: ""
