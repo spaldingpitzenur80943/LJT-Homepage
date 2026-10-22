@@ -1,4 +1,4 @@
-# Workflow for building and deploying the personal homepage to GitHub Pages
+# Workflow for building and publishing the personal homepage
 name: Deploy personal homepage to Pages
 
 on:
@@ -7,9 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: "pages"
@@ -31,25 +29,11 @@ jobs:
         run: bundle exec jekyll build --baseurl "/LJT-Homepage" --strict_front_matter
         env:
           JEKYLL_ENV: production
-      - name: Enable GitHub Pages
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if ! gh api "repos/${{ github.repository }}/pages" >/dev/null 2>&1; then
-            gh api --method POST "repos/${{ github.repository }}/pages" -f build_type=workflow
-          fi
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-      - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v3
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v3
+      - name: Publish built site to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          publish_branch: gh-pages
+          enable_jekyll: false
+          force_orphan: true
