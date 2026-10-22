@@ -1,5 +1,3 @@
 Repository: spaldingpitzenur80943/LJT-Homepage
 GET Pages
-{"message":"Not Found","documentation_url":"https://docs.github.com/rest/pages/pages#get-a-apiname-pages-site","status":"404"}gh: Not Found (HTTP 404)
-POST Pages workflow
-{"message":"Resource not accessible by integration","documentation_url":"https://docs.github.com/rest/pages/pages#create-a-apiname-pages-site","status":"403"}gh: Resource not accessible by integration (HTTP 403)
+{"url":"https://api.github.com/repos/spaldingpitzenur80943/LJT-Homepage/pages","status":"errored","cname":null,"custom_404":false,"html_url":"https://spaldingpitzenur80943.github.io/LJT-Homepage/","build_type":"legacy","source":{"branch":"master","path":"/"},"public":true,"protected_domain_state":null,"pending_domain_unverified_at":null,"https_enforced":true}
